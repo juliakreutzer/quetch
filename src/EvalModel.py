@@ -4,17 +4,17 @@ import theano.tensor as T
 from Task import WMT14QETask2, WMT14QETask1_1, WMT15QETask2
 import theano
 import datetime
-from QUETCH import writeOutputToFile, f1_ok_and_bad
+from QUETCH import writeOutputToFile, f1_ok_and_bad, loadParams
 import numpy as np
 import argparse
 import matplotlib.pyplot as plt
 
 
-def loadParams(paramfile):
-	""" Load trained parameters from file, build model and evaluate on test set """
-	f = open(paramfile,"r")
-	params = cPickle.load(f)
-	return params
+#def loadParams(paramfile):
+#	""" Load trained parameters from file"""
+#	f = open(paramfile,"r")
+#	params = cPickle.load(f)
+#	return params
 
 def testModelOnTest_task2_14(paramfile, testDataDir, devDataDir, trainDataDir, targetWindowSize, sourceWindowSize, outFile, wordDictionary=None, featureIndices=None, alignments=None, lowercase=True, full=False, multi=False, acti=None):
 	""" Test given model on task 2 data """

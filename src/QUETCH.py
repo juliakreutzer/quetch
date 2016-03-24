@@ -6,7 +6,7 @@ import theano.tensor as T
 from NN import NN
 from ContextExtractor import ContextExtractor1, ContextExtractor2, corpus2dict
 from Task import WMT14QETask2, WMT14QETask1_1, WMT15QETask2
-from EvalModel import loadParams
+#from EvalModel import loadParams
 
 import random
 import sys
@@ -29,6 +29,13 @@ warnings.filterwarnings("ignore") #ignore warnings
 
 """QUality Estimation from scraTCH - main class to run experiments"
 """
+
+def loadParams(paramfile):
+    """ Load trained parameters from file"""
+    f = open(paramfile,"r")
+    params = cPickle.load(f)
+    return params
+
 
 def writeOutputToFile(task, filename, targets, pred_multi=None, pred_l1=None, pred_bin=None, pred_task1_1=None, likelihood_multi=None, likelihood_l1=None, likelihood_bin=None):
 	""" 
