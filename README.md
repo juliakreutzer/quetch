@@ -2,11 +2,12 @@ Implementation of the Neural Network model for word-level quality estimation, de
 
 1. Prepare
 
-- Install theano and gensim.
-- Create a `parameters` directory. The models will be stored here.
-- Create a `dict` directory, mappings from words to indices in the lookup table are stored here.
-- Create a `results` directory, with subdirectories for each task (`task2`, `task1.1`). Final predictions will be stored here.
-- Download the WMT data and create directories for it (`WMT14-data` and `ẀMT15-data`). Proceed with pre-processing the data to produce the format described in the following.
+  - Install theano and gensim.
+  - Create a `parameters` directory. The models will be stored here.
+  - Create a `dict` directory, mappings from words to indices in the lookup table are stored here.
+  - Create a `results` directory, with subdirectories for each task (`task2`, `task1.1`). Final predictions will be stored here.
+  - Download the WMT data and create directories for it (`WMT14-data` and `ẀMT15-data`). Proceed with pre-processing the data to produce the format described in the following.
+
 
 2. WMT data
 
@@ -36,7 +37,8 @@ Implementation of the Neural Network model for word-level quality estimation, de
   `0.1     2-0 1-1 0-2 3-3 4-4 4-5 5-6 6-7 10-8 8-9 7-10 9-11 9-12 11-13`, i.e. the sentence id separated with a tab from the source-target alignment indices.
   Note that the WMT14 requires tokenization as an additional pre-processing step.
 
-3. Training a model
+3. Train a model
+
   Run `python QUETCH.py 15 2 en-es`, where 15 indicates the year of the WMT task, 2 indicates the task (word-level QE) and en-es is the language pair (English to Spanish). The code also covers sentence-level predictions (task 1.1), but they are not recommended to use, since the approach is very naive. 
 
   More model parameters:
@@ -62,7 +64,8 @@ Implementation of the Neural Network model for word-level quality estimation, de
 
   The model is saved each time the score on the dev set improved. It is stored in the `parameters` directory.
 
-3. Test a model
+4. Test a model
+
   Run `python EvalModel.py 15 2 en-es ../parameters/mymodel.params ../results/mymodel.results -dict ../dicts/mymodel.dict` for testing a model stored in `../parameters/mymodel.params` on test data and writing the predictions to `../results/mymodel.results`. The dictionary was produced during training and is necessary to map words to vectors. Source and target window size need to be the same as during training (same flags).
 
 
